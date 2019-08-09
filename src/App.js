@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import News from './Components/NewsComponent';
-import Restaurants from './Components/Restaurants';
 import Weather from './Components/Weather';
-import Books from './Components/Books';
 import './App.css';
 
 const APIKEY = 'b3b740bbd748af4ac0a19778baa007c1';
@@ -28,10 +25,7 @@ export default class App extends Component {
 				</div>
 				<div id="page" className="hide">
 					<h1 className="text-light">{this.state.websiteName}</h1>
-					<Weather name={this.state.cities}/>
-					<News />
-					<Restaurants />
-					<Books />
+					<Weather />
 				</div>
 			</main>
 		);
