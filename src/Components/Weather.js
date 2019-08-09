@@ -86,13 +86,16 @@ export class Weather extends Component {
                     url: `http://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=${APIKEY}`
                 })
             });
-		this.makeNewRequest();
+		setTimeout(() => {
+            this.makeNewRequest();
+        }, 100);
 	} else {
 		document.getElementById('userInput').classList.add('error');
 		setTimeout(function(){
 			document.getElementById('userInput').classList.remove('error');
 		}, 1500);
-	}
+    }
+    console.log(this.state.term);
 	}
     
     makeNewRequest = () => {
@@ -113,7 +116,7 @@ export class Weather extends Component {
 
         let allCities = this.state.cities.map((city, index) => {
             return (
-            <li className="list-group-item" index={index}>
+            <li className="list-group-item" key={index}>
                 <h3>{city.data && city.data.name}</h3>
                 <img className="sm-img" src={city.data.weather && `http://openweathermap.org/img/w/${city.data.weather[0].icon}.png`} />
                 <b>{city.data.weather && city.data.weather[0].description}</b>
@@ -129,7 +132,7 @@ export class Weather extends Component {
 						<button className="btn btn-primary">Submit</button>
 					</form>
             <div className="card rounded shadow p-3">
-					<h2>{this.state.data.name}</h2>
+					<h3>{this.state.data && this.state.data.name}</h3>
 					<img src={this.state.data.weather && `http://openweathermap.org/img/w/${this.state.data.weather[0].icon}.png`} alt="wthr img" />
 					<p>{this.state.data.weather && this.state.data.weather[0].description}</p>
 					<p>{this.state.data.main && this.state.data.main.temp.toFixed(0) + "°"}</p>
