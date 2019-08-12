@@ -12,7 +12,7 @@ export default class App extends Component {
 
 		return (
 			<main>
-				<h1 className="text-light">{this.state.websiteName}</h1>
+				<h1>{this.state.websiteName}</h1>
 				<Weather />
 			</main>
 		);

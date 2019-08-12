@@ -9,7 +9,7 @@ export default class Weather extends Component {
 		error: ''
 	}
 	
-	componentDidMount = () => {
+	componentWillMount = () => {
 		this.makeRequest();
 	}
 
@@ -71,8 +71,8 @@ export default class Weather extends Component {
 				</form>
 
 				<div>
-					<p>{this.state.loading && "Loading..."}</p>
-					<p>{this.state.error && 'City not found'}</p>
+					<p className="loading">{this.state.loading && "Loading..."}</p>
+					<p className="notFound">{this.state.error && 'City not found'}</p>
 				</div>
 				{this.state.data.length > 0 &&
 				<WeatherList data={this.state.data} />
