@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import WeatherList from './WeatherList';
+/* eslint-disable */
 
 export default class Weather extends Component {
     state = {
@@ -22,7 +23,7 @@ export default class Weather extends Component {
 				throw Error(response.statusText);
 			}
 			return response;
-		};
+		}
 
 		fetch(url).then(handleErrors)
 		.then((response) => {
@@ -34,8 +35,8 @@ export default class Weather extends Component {
 					loading: false, 
 					error: false, 
 					city: ''
-				}
-			})
+				};
+			});
 		}).catch(error => {
 			this.setState({ error, loading: false })
 		})
