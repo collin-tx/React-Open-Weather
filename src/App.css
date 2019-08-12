@@ -93,16 +93,3 @@ img {
 .hide {
   display: none;
 }
-
-#loading {
-  height: 100vh;
-  width: 100vw;
-  font-size: 7rem;
-  position: relative;
-}
-
-.loading-text {
-  position: relative;
-  top: 200px;
-  left: -350px !important;
-}
