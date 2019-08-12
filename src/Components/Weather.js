@@ -4,16 +4,28 @@ import WeatherList from './WeatherList';
 export default class Weather extends Component {
     state = {
         data: [],
-		city: '',
+		city: 'Dallas',
 		loading: false,
 		error: ''
-    }
+	}
+	
+	componentDidMount = () => {
+		this.makeRequest();
+	}
 
 	makeRequest = () => {
 		const city = this.state.city;
 		this.setState({loading: true});
 		const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b3b740bbd748af4ac0a19778baa007c1`;
-		fetch(url).then((response) => {
+		function handleErrors(response) {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			return response;
+		};
+
+		fetch(url).then(handleErrors)
+		.then((response) => {
 			return response.json();
 		}).then((data) => {
 			this.setState( () => {
@@ -24,14 +36,13 @@ export default class Weather extends Component {
 					city: ''
 				}
 			})
-			console.log(data);
 		}).catch(error => {
 			this.setState({ error, loading: false })
 		})
 	}
 
     changeHandler = (e) => {
-		let userInput = e.target.value.toLowerCase();
+		let userInput = e.target.value;
 		this.setState({city: userInput})
     }
     
@@ -63,7 +74,9 @@ export default class Weather extends Component {
 					<p>{this.state.loading && "Loading..."}</p>
 					<p>{this.state.error && 'City not found'}</p>
 				</div>
+				{this.state.data.length > 0 &&
 				<WeatherList data={this.state.data} />
+				}
             </div>
         );
     }
