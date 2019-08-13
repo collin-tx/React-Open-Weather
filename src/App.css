@@ -80,9 +80,9 @@ img {
 }
 
 .sm-img {
-  height: 30px;
-  width: 30px;
-  margin-left: 33%;
+  height: 40px;
+  width: 40px;
+  margin-left: 28%;
 }
 
 .hide {
@@ -92,7 +92,7 @@ img {
 .col {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
