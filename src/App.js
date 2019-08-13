@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Weather from './Components/Weather';
 import './App.css';
-/* eslint-disable */
 
 
 export default class App extends Component {
