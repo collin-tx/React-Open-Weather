@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import WeatherList from './WeatherList';
-/* eslint-disable */
 
 export default class Weather extends Component {
     state = {
