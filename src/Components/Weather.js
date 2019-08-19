@@ -59,6 +59,12 @@ export default class Weather extends Component {
    	 }
 	}
 
+	removeCity = (id) => {
+		this.setState( prevState => ({ 
+			data: prevState.data.filter(city => city.id !== id)
+		}));
+	}
+
 
     render() {
 
@@ -75,7 +81,7 @@ export default class Weather extends Component {
 					<p className="notFound">{this.state.error && 'City not found'}</p>
 				</div>
 				{this.state.data.length > 0 &&
-				<WeatherList data={this.state.data} />
+				<WeatherList data={this.state.data} removeCity={this.removeCity} />
 				}
             </div>
         );

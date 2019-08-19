@@ -1,13 +1,9 @@
 import React from 'react';
 
-const WeatherList = ({ data }) => {
+const WeatherList = ({ data, removeCity }) => {
     
     const convertKtoF = degree => {
         return Math.round(1.8 * (degree - 273) + 32)
-      }
-
-      const removeItem = (e) => {
-        e.target.parentElement.parentElement.classList.add('hide');
       }
 
       const moreInfo = (e) => {
@@ -17,12 +13,12 @@ const WeatherList = ({ data }) => {
     return (
         <div id="weather">
             <ul className="list-group">
-                {data.map(city => {
+                {data && data.map((city, index) => {
                     return (
-                        <li className="list-group-item" key={city.id}>
+                        <li className="list-group-item" key={city && city.id}>
                             <div className="col info">
                             <h4>{city.name}</h4>
-                            <img className="sm-img" src={city.weather && `http://openweathermap.org/img/w/${city.weather[0].icon}.png`} />
+                            <img className="sm-img" alt="weather symbol" src={city.weather && `http://openweathermap.org/img/w/${city.weather[0].icon}.png`} />
                             <p>{city.weather && city.weather[0].description}</p>
                             </div>
                             <div className="col temp">
@@ -31,7 +27,7 @@ const WeatherList = ({ data }) => {
                                 <p>Low: {convertKtoF(city.main && city.main.temp_min).toFixed(0) + "°"}</p>
                             </div>
                             <div className="col btns">
-                                <button className="btn btn-sm btn-danger" id="remove" onClick={removeItem}>remove</button>
+                                <button className="btn btn-sm btn-danger" id="remove" onClick={ () => removeCity(city.id) }>remove</button>
                                 <button className="btn btn-sm btn-info" id="moreInfo" onClick={moreInfo}>more info</button>
                             </div>
                         </li>
