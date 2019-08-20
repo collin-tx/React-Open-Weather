@@ -25,7 +25,7 @@ const WeatherList = ({ data, removeCity }) => {
                             </div>
                             <div className="col btns">
                                 <button className="btn btn-sm btn-danger" id="remove" onClick={ () => removeCity(city.id) }>remove</button>
-                                <Forecast city={city.name} cityID={city.id} />
+                                <Forecast city={city.name} cityID={city.id} convert={convertKtoF} />
                             </div>
                         </li>
                     )

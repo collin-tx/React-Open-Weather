@@ -6,7 +6,6 @@ export class Forecast extends Component {
         data: [],
         city: this.props.city,
         display: false,
-        tomorrow: ''
     }
 
     componentDidMount(){
@@ -26,24 +25,26 @@ export class Forecast extends Component {
     }
 
     displayForecast = (e) => {
-        let tomorrow = this.state.data[0] && "tomorrow's high: " + this.state.data[0].list[7].main.temp_max + ' low: ' + this.state.data[0].list[7].main.temp_min;
+        // let tomorrow = this.state.data[0] && "tomorrow  " + this.state.data[0].list[7].weather[0].description + "    high: " + this.props.convert(this.state.data[0].list[7].main.temp_max) + "°";
         this.setState( () => { 
-            return { display: true, tomorrow } 
+            return { display: !this.state.display } 
         })
-        let day1 = "tomorrow's high: " + this.state.data[0].list[7].main.temp_max + ' low: ' + this.state.data[0].list[7].main.temp_min;
-         console.log(day1);
-        // let newDiv = document.createElement('div');
-        // newDiv.innerHTML = <div>{day1}</div>
-        // e.target.parentElement.appendChild(newDiv);
     }
     
     render() {
+        let tomorrowDesc = this.state.data[0] && this.state.data[0].list[7].weather[0].description;
+        let tomorrowHI = this.state.data[0] && "high: " + this.props.convert(this.state.data[0].list[7].main.temp_max) + "°"
         return (
             <div>
-            <button className="btn btn-sm btn-info" id="moreInfo" onClick={this.displayForecast}>more info</button>
-            <div className="tomorrowDisplay">
-                {this.state.display && this.state.tomorrow}
-            </div>
+            <button className="btn btn-sm btn-info" id="moreInfo" onClick={this.displayForecast}>{this.state.display ? 'hide info' : 'more info'}</button>
+                {
+                    this.state.display && 
+                    <div className="tomorrowDisplay">
+                        <p>tomorrow: </p>
+                        <p>{tomorrowDesc}</p>
+                        <p>{tomorrowHI}</p>
+                    </div>
+                }
             </div>
         )
     }
