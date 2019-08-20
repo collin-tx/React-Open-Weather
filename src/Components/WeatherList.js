@@ -7,13 +7,6 @@ const WeatherList = ({ data, removeCity }) => {
         return Math.round(1.8 * (degree - 273) + 32)
       }
 
-    const displayForecast = (e, index) => {
-        let day1 = "tomorrow's high: " + this.state.data[index].list[1].main.temp_max + 'low' + this.state.data[index].list[1].main.temp_min;
-        let newDiv = document.createElement('div');
-        newDiv.innerHTML = `<div>${day1}</div>`
-        e.target.parentElement.appendChild(newDiv);
-    }
-
     return (
         <div id="weather">
             <ul className="list-group">
@@ -32,7 +25,7 @@ const WeatherList = ({ data, removeCity }) => {
                             </div>
                             <div className="col btns">
                                 <button className="btn btn-sm btn-danger" id="remove" onClick={ () => removeCity(city.id) }>remove</button>
-                                <Forecast city={city.name} index={index}/>
+                                <Forecast city={city.name} cityID={city.id} />
                             </div>
                         </li>
                     )
